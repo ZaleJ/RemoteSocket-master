@@ -31,9 +31,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
-        pref = PreferenceManager.getDefaultSharedPreferences(this);
+        setContentView(R.layout.activity_login);    //设置登陆界面xml文件
+        ButterKnife.bind(this);              //在onCreate中绑定Activity
+        pref = PreferenceManager.getDefaultSharedPreferences(this);//每个应用有一个默认的偏好文件preferences.xml，使用getDefaultSharedPreferences获取
         boolean isRemember = pref.getBoolean("remember_ip", false);
         if (isRemember) {
             ipText.setText(pref.getString("ip", ""));
