@@ -28,15 +28,32 @@ public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.input_port) EditText portText;
     @Bind(R.id.remember_ip) CheckBox ipRemember;
 
+    ////////////////一些偏好的使用以及原型
+
+//    // get it
+//    SharedPreferences p = mContext.getSharedPreferences("Myprefs", Context.MODE_PRIVATE);
+//    // or
+//        p = PreferenceManager.getDefaultSharedPreferences(mContext);
+//
+//    // read
+//    p.getString("preference_key", "default value");
+//
+//    // write
+//    p.edit().putString("preference_key", "new value").commit();
+//    // or
+//    p.edit().putString("preference_key", "new value").apply();
+    ////////////////
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);    //设置登陆界面xml文件
         ButterKnife.bind(this);              //在onCreate中绑定Activity
         pref = PreferenceManager.getDefaultSharedPreferences(this);//每个应用有一个默认的偏好文件preferences.xml，使用getDefaultSharedPreferences获取
-        boolean isRemember = pref.getBoolean("remember_ip", false);
+        boolean isRemember = pref.getBoolean("remember_ip", false); //布尔型变量，获取偏好是否记住ip
         if (isRemember) {
-            ipText.setText(pref.getString("ip", ""));
+        ipText.setText(pref.getString("ip", ""));               //.getString()键值与
             portText.setText(String.valueOf(pref.getInt("port", 8080)));
             ipRemember.setChecked(true);
         }
