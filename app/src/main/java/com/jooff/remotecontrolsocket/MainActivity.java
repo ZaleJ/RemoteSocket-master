@@ -33,20 +33,20 @@ import rx.functions.Func1;
 import static com.jooff.remotecontrolsocket.LoginActivity.mSocket;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
-    private ArrayList<RemoteSocket> mList;
-    private OutputStream mOutputStream;
-    private InputStream mInputStream;
-    private SocketAdapter sa;
+    private static final String TAG = "MainActivity";   //在Log语句中标记MainActivity，大概是为了防止拼错。。
+    private ArrayList<RemoteSocket> mList;              //定义一个RemoteSocket类的列表，
+    private OutputStream mOutputStream;                 //输出流
+    private InputStream mInputStream;                   //输入流
+    private SocketAdapter sa;                           //套接字适配器？？
 
-    @Bind(R.id.rv) RecyclerView rv;
-    @Bind(R.id.bmb) BoomMenuButton bmb;
+    @Bind(R.id.rv) RecyclerView rv;                     //通过bind方法绑定avtivity.xml中的RecyclerView
+    @Bind(R.id.bmb) BoomMenuButton bmb;                 //通过bind方法绑定avtivity.xml中的BoomMenuButton
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+    public void onCreate(Bundle savedInstanceState) {   //重写主程序创建方法
+        super.onCreate(savedInstanceState);             //super父类主程序形参
+        setContentView(R.layout.activity_main);         //设置布局xml文件
+        ButterKnife.bind(this);                   //
         setTitle("已连接到：" + mSocket.getInetAddress().toString().substring(1, mSocket.getInetAddress().toString().length()));
         initView();
         initSocket();

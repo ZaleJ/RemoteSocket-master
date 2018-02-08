@@ -53,9 +53,9 @@ public class LoginActivity extends AppCompatActivity {
         pref = PreferenceManager.getDefaultSharedPreferences(this);//每个应用有一个默认的偏好文件preferences.xml，使用getDefaultSharedPreferences获取
         boolean isRemember = pref.getBoolean("remember_ip", false); //布尔型变量，获取偏好是否记住ip
         if (isRemember) {
-        ipText.setText(pref.getString("ip", ""));               //.getString()键值与
-            portText.setText(String.valueOf(pref.getInt("port", 8080)));
-            ipRemember.setChecked(true);
+        ipText.setText(pref.getString("ip", ""));               //.getString()键值与默认值
+            portText.setText(String.valueOf(pref.getInt("port", 8080)));//同上设置键值与默认值
+            ipRemember.setChecked(true);            //表示设置记住标签为true，已检查过？
         }
     }
 
