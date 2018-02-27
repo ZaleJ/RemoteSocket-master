@@ -46,21 +46,25 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {   //重写主程序创建方法
         super.onCreate(savedInstanceState);             //super父类主程序形参
         setContentView(R.layout.activity_main);         //设置布局xml文件
-        ButterKnife.bind(this);                   //
-        setTitle("已连接到：" + mSocket.getInetAddress().toString().substring(1, mSocket.getInetAddress().toString().length()));
-        initView();
-        initSocket();
+        ButterKnife.bind(this);                  //黄油刀绑定控件
+        setTitle("已连接到：" + mSocket.getInetAddress().toString().substring(1, mSocket.getInetAddress().toString().length()));//设置标题
+        initView();         //初始化视图
+        initSocket();       //初始化socket
     }
 
+
     private void initView() {
-        mList = new ArrayList<>();
+        mList = new ArrayList<>();      //初始化ArrayList
+
+        //生成4个RemoteSocket控件设置image与name并放入mList
         for (int i = 0; i < 4; i++) {
             RemoteSocket rs = new RemoteSocket();
             rs.setSocketImage(R.drawable.ic_power_settings_new_grey_500_24dp);
             rs.setSocketName("S" + String.valueOf(i + 1));
             mList.add(rs);
         }
-        sa = new SocketAdapter(mList);
+
+        sa = new SocketAdapter(mList);  //将mList放入套接字适配器sa中，
         sa.setOnCheckChangeListener(new SocketAdapter.OnCheckChangeListener() {
             @Override
             public void onCheckChange(CompoundButton v, final int position, boolean isChecked) {

@@ -29,6 +29,9 @@ public class SocketAdapter extends RecyclerView.Adapter<SocketAdapter.SocketHold
     public SocketHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new SocketHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.rec_item, parent, false));
     }
+//
+//    ViewGroup parent：可以简单理解为item的根ViewGroup，item的子控件加载在其中
+//    int viewType：item的类型，可以根据viewType来创建不同的ViewHolder，来加载不同的类型的item
 
     public interface OnCheckChangeListener {
         void onCheckChange(CompoundButton v, int position, boolean isChecked);
