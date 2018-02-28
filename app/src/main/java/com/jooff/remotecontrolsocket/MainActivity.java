@@ -65,16 +65,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         sa = new SocketAdapter(mList);  //将mList放入套接字适配器sa中，
+        //为套接字适配器sa相应监听检测状态变化监听器
         sa.setOnCheckChangeListener(new SocketAdapter.OnCheckChangeListener() {
             @Override
+
+            //监听器相应线程
             public void onCheckChange(CompoundButton v, final int position, boolean isChecked) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         Log.d(TAG, "run: set");
                         try {
-                            mOutputStream.write(String.valueOf(position + 1).getBytes());
-                            mOutputStream.flush();
+                            mOutputStream.write(String.valueOf(position + 1).getBytes());   //将相对应的cambat的ID值写入输出流
+                            mOutputStream.flush();          // 清空缓存区
                             Log.d(TAG, "run: flush");
                         } catch (IOException e) {
                             e.printStackTrace();
