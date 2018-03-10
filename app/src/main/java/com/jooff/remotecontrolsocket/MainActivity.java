@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         sa = new SocketAdapter(mList);  //将mList放入套接字适配器sa中，
+
         //为套接字适配器sa相应监听检测状态变化监听器
         sa.setOnCheckChangeListener(new SocketAdapter.OnCheckChangeListener() {
             @Override
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         Log.d(TAG, "run: set");
                         try {
-                            mOutputStream.write(String.valueOf(position + 1).getBytes());   //将相对应的cambat的ID值写入输出流
+                            mOutputStream.write(String.valueOf(position + 1).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
                             mOutputStream.flush();          // 清空缓存区
                             Log.d(TAG, "run: flush");
                         } catch (IOException e) {
@@ -85,9 +86,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).start();
             }
+
         });
+
+        // 设置adapter
         rv.setAdapter(sa);
+        // 设置布局管理器
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
         for (int i = 0; i < bmb.getPiecePlaceEnum().pieceNumber(); i++) {
             TextInsideCircleButton.Builder builder = new TextInsideCircleButton.Builder()
                     .normalColor(Color.parseColor("#009688"))
