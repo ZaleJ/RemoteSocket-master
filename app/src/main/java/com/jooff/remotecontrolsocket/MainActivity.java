@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private OutputStream mOutputStream;                 //输出流
     private InputStream mInputStream;                   //输入流
     private SocketAdapter sa;                           //套接字适配器？？
+    private boolean turned=false;
 
     @Bind(R.id.rv) RecyclerView rv;                     //通过bind方法绑定avtivity.xml中的RecyclerView
     @Bind(R.id.bmb) BoomMenuButton bmb;                 //通过bind方法绑定avtivity.xml中的BoomMenuButton
@@ -71,14 +72,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
 
             //监听器相应线程
-            public void onCheckChange(CompoundButton v, final int position, boolean isChecked) {
+            public void onCheckChange(CompoundButton v, final int position, final boolean isChecked) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         Log.d(TAG, "run: set");
                         try {
-                            mOutputStream.write(String.valueOf(position + 1).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
-                            mOutputStream.flush();          // 清空缓存区
+                            //Log.d(TAG, String.valueOf(position + 1));
+////////////////////////////////////////////////////////////////////
+                            if(!turned){
+                                Log.d(TAG, String.valueOf(position + 1));
+                                mOutputStream.write(String.valueOf(position + 1).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
+                                mOutputStream.flush();          // 清空缓存区
+                                turned=true;
+                            }else{
+                                Log.d(TAG, String.valueOf(position + 1));
+                                mOutputStream.write(String.valueOf(position + 2).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
+                                mOutputStream.flush();          // 清空缓存区
+                                turned=false;
+                            }
+/////////////////////////////////////////////////////////////////////
+
+//                            mOutputStream.write(String.valueOf(position + 1).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
+//                            mOutputStream.flush();          // 清空缓存区
                             Log.d(TAG, "run: flush");
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -216,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
                                             mList.get(i).setSocketImage(R.drawable.ic_power_settings_new_black_24dp);
                                             Log.d(TAG, "run: true " + i);
                                         }
+
                                     }
                                     sa.notifyDataSetChanged();
                                 }
