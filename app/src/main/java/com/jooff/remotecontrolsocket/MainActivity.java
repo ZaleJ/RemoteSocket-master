@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
     private OutputStream mOutputStream;                 //输出流
     private InputStream mInputStream;                   //输入流
     private SocketAdapter sa;                           //套接字适配器？？
-    private boolean turned=false;
+    private boolean turned=false;                       //设置是否有过按键操作改变cambat状态
 
     @Bind(R.id.rv) RecyclerView rv;                     //通过bind方法绑定avtivity.xml中的RecyclerView
-    @Bind(R.id.bmb) BoomMenuButton bmb;                 //通过bind方法绑定avtivity.xml中的BoomMenuButton
+    //@Bind(R.id.bmb) BoomMenuButton bmb;                 //通过bind方法绑定avtivity.xml中的BoomMenuButton
 
     @Override
     public void onCreate(Bundle savedInstanceState) {   //重写主程序创建方法
@@ -84,20 +84,21 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "run: set");
                         try {
                             //Log.d(TAG, String.valueOf(position + 1));
-////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////第一个按键翻转操作
                             if(!turned){
                                 Log.d(TAG, String.valueOf(position + 1));
                                 mOutputStream.write(String.valueOf(position + 1).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
                                 mOutputStream.flush();          // 清空缓存区
                                 turned=true;
                             }else{
-                                Log.d(TAG, String.valueOf(position + 1));
+                                Log.d(TAG, String.valueOf(position + 2));
                                 mOutputStream.write(String.valueOf(position + 2).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
                                 mOutputStream.flush();          // 清空缓存区
                                 turned=false;
                             }
-/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////第一个按键翻转操作
 
+                            //原双按键翻转操作
 //                            mOutputStream.write(String.valueOf(position + 1).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
 //                            mOutputStream.flush();          // 清空缓存区
                             Log.d(TAG, "run: flush");
@@ -248,6 +249,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 }
 
