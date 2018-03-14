@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         mList = new ArrayList<>();      //初始化ArrayList
 
         //生成4个RemoteSocket控件设置image与name并放入mList
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 2; i++) {
             RemoteSocket rs = new RemoteSocket();
             rs.setSocketImage(R.drawable.ic_power_settings_new_grey_500_24dp);
             rs.setSocketName("S" + String.valueOf(i + 1));

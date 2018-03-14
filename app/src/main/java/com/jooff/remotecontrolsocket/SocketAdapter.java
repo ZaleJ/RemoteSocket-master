@@ -46,9 +46,10 @@ public class SocketAdapter extends RecyclerView.Adapter<SocketAdapter.SocketHold
     @Override
     public void onBindViewHolder(final SocketHolder holder, int position) {
         RemoteSocket rs = list.get(position);
-        holder.mSocket.setImageResource(rs.getSocketImage());
-        holder.socketNumber.setText(rs.getSocketName());
-        holder.socketSwitch.setChecked(rs.getSwitchCompat());
+        holder.mSocket.setImageResource(rs.getSocketImage());   //预设图片源
+        holder.socketNumber.setText(rs.getSocketName());        //设置文本源
+        holder.socketSwitch.setChecked(rs.getSwitchCompat());   //套接字开关，
+        //当变化监听器检测到变化时
         if (onCheckChangeListener != null) {
             holder.socketSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
