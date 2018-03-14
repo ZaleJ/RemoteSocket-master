@@ -115,22 +115,22 @@ public class MainActivity extends AppCompatActivity {
         // 设置布局管理器
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        for (int i = 0; i < bmb.getPiecePlaceEnum().pieceNumber(); i++) {
-            TextInsideCircleButton.Builder builder = new TextInsideCircleButton.Builder()
-                    .normalColor(Color.parseColor("#009688"))
-                    .normalImageRes(R.drawable.butterfly)
-                    .normalText("S" + String.valueOf(i + 1))
-                    .listener(new OnBMClickListener() {
-                        @Override
-                        public void onBoomButtonClick(int index) {
-                            showTimePicker("S" + String.valueOf(index + 1));
-                        }
-                    });
-            bmb.addBuilder(builder);
-        }
-        bmb.setHighlightedColor(Color.TRANSPARENT);
-        bmb.setShadowEffect(false);
-        bmb.setNormalColor(Color.TRANSPARENT);
+//        for (int i = 0; i < bmb.getPiecePlaceEnum().pieceNumber(); i++) {
+//            TextInsideCircleButton.Builder builder = new TextInsideCircleButton.Builder()
+//                    .normalColor(Color.parseColor("#009688"))
+//                    .normalImageRes(R.drawable.butterfly)
+//                    .normalText("S" + String.valueOf(i + 1))
+//                    .listener(new OnBMClickListener() {
+//                        @Override
+//                        public void onBoomButtonClick(int index) {
+//                            showTimePicker("S" + String.valueOf(index + 1));
+//                        }
+//                    });
+//            bmb.addBuilder(builder);
+//        }
+//        bmb.setHighlightedColor(Color.TRANSPARENT);
+//        bmb.setShadowEffect(false);
+//        bmb.setNormalColor(Color.TRANSPARENT);
     }
 
     private void initSocket() {
