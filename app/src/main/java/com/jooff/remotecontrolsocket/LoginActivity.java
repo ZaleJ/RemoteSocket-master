@@ -9,6 +9,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.mengpeng.mphelper.ToastUtils;
+
 import java.net.Socket;
 import java.util.concurrent.Callable;
 
@@ -63,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
     void setLoginButton() {
         final String ip = ipText.getText().toString();
         final int port = Integer.valueOf(portText.getText().toString());
+        ToastUtils.getInstance().initToast(this);
         Single.fromCallable(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
@@ -74,7 +77,8 @@ public class LoginActivity extends AppCompatActivity {
                 .subscribe(new SingleSubscriber<Boolean>() {
                     @Override
                     public void onSuccess(Boolean value) {
-                        Toast.makeText(LoginActivity.this, "已连接到 " + ip, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(LoginActivity.this, "已连接到 " + ip, Toast.LENGTH_SHORT).show();
+                        ToastUtils.onSuccessShowToast( "成功toast");
                         if (ipRemember.isChecked()) {
                             pref.edit().putBoolean("remember_ip", true).apply();
                             pref.edit().putString("ip", ip).apply();
@@ -88,7 +92,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(LoginActivity.this, R.string.error_invalid_ip, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(LoginActivity.this, R.string.error_invalid_ip, Toast.LENGTH_SHORT).show();
+                        ToastUtils.onErrorShowToast( "失败toast");
                     }
                 });
     }

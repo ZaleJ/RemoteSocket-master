@@ -39,4 +39,17 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.6'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:recyclerview-v7:25.0.1'
+    implementation 'com.github.mengpeng920223:ToastUtils:v1.0.3'
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                //这里指定需要统一的依赖版本,这里统一为26.0.0-alpha1
+                details.useVersion '25.0.1'
+            }
+        }
+    }
 }

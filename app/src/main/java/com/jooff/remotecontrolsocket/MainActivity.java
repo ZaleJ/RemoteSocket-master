@@ -14,6 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.mengpeng.mphelper.ToastUtils;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.TextInsideCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("已连接到：" + mSocket.getInetAddress().toString().substring(1, mSocket.getInetAddress().toString().length()));//设置标题
         initView();         //初始化视图
         initSocket();       //初始化socket
+        ToastUtils.getInstance().initToast(this);
     }
 
 
@@ -223,7 +225,8 @@ public class MainActivity extends AppCompatActivity {
                             .subscribe(new Subscriber<String>() {
                                 @Override
                                 public void onCompleted() {
-                                    Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
+                                    ToastUtils.onWarnShowToast(s);
                                 }
 
                                 @Override
