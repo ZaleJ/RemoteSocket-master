@@ -7,7 +7,6 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.mengpeng.mphelper.ToastUtils;
 
@@ -78,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Boolean value) {
                         //Toast.makeText(LoginActivity.this, "已连接到 " + ip, Toast.LENGTH_SHORT).show();
-                        ToastUtils.onSuccessShowToast( "成功toast");
+                        ToastUtils.onSuccessShowToast( "已连接到"+ip);
                         if (ipRemember.isChecked()) {
                             pref.edit().putBoolean("remember_ip", true).apply();
                             pref.edit().putString("ip", ip).apply();
@@ -93,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onError(Throwable e) {
                         //Toast.makeText(LoginActivity.this, R.string.error_invalid_ip, Toast.LENGTH_SHORT).show();
-                        ToastUtils.onErrorShowToast( "失败toast");
+                        ToastUtils.onErrorShowToast(R.string.error_invalid_ip);
                     }
                 });
     }

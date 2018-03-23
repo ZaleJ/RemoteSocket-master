@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">WIFI测试1</string>
+    <string name="app_name">CSDJ智能门锁</string>
     <string name="remote_ip">用户名</string>
     <string name="remote_port">密码</string>
-    <string name="error_invalid_ip">请输入正确的用户名</string>
+    <string name="error_invalid_ip">请输入正确的用户名与密码</string>
     <string name="activity_login">TCP 连接</string>
     <string name="remember_ip">记住用户名</string>
     <string name="remote_connect">登录</string>
