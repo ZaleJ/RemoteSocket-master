@@ -67,10 +67,28 @@ public class MainActivity extends AppCompatActivity {
 //            mList.add(rs);
 //        }
 //////////////////////////////////////////////////////
-            RemoteSocket rs = new RemoteSocket();
-            rs.setSocketImage(R.drawable.ic_power_settings_new_grey_500_24dp);
-            rs.setSocketName("S" + String.valueOf(1));
-            mList.add(rs);
+        RemoteSocket rs = new RemoteSocket();
+        rs.setSocketImage(R.drawable.ic_power_settings_new_grey_500_24dp);
+        //rs.setSocketName("S" + String.valueOf(1));
+        rs.setSocketName("开关");
+        mList.add(rs);
+
+        RemoteSocket rs1 = new RemoteSocket();
+        rs1.setSocketImage(R.drawable.ic_power_settings_new_grey_500_24dp);
+        rs1.setSocketName("微调");
+        mList.add(rs1);
+
+
+        RemoteSocket rs3 = new RemoteSocket();
+        rs3.setSocketImage(R.drawable.ic_power_settings_new_grey_500_24dp);
+        rs3.setSocketName("加一圈");
+        mList.add(rs3);
+
+        RemoteSocket rs4 = new RemoteSocket();
+        rs4.setSocketImage(R.drawable.ic_power_settings_new_grey_500_24dp);
+        rs4.setSocketName("减一圈");
+        mList.add(rs4);
+
 //////////////////////////////////////////////////////
         sa = new SocketAdapter(mList);  //将mList放入套接字适配器sa中，
 
@@ -87,17 +105,48 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             //Log.d(TAG, String.valueOf(position + 1));
 ////////////////////////////////////////////////////////////////////第一个按键翻转操作
-                            if(!turned){
-                                Log.d(TAG, String.valueOf(position + 1));
-                                mOutputStream.write(String.valueOf(position + 1).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
-                                mOutputStream.flush();          // 清空缓存区
-                                turned=true;
-                            }else{
-                                Log.d(TAG, String.valueOf(position + 2));
-                                mOutputStream.write(String.valueOf(position + 2).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
-                                mOutputStream.flush();          // 清空缓存区
-                                turned=false;
+                            //0
+                            if(position+1==1){
+                                if(!turned){
+                                    Log.d(TAG, String.valueOf(position + 1));
+
+                                    mOutputStream.write(String.valueOf(position + 1).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
+                                    mOutputStream.flush();          // 清空缓存区
+                                    turned=true;
+                                }else{
+                                    Log.d(TAG, String.valueOf(position + 2));
+                                    mOutputStream.write(String.valueOf(position + 2).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
+                                    mOutputStream.flush();          // 清空缓存区
+                                    turned=false;
+                                }
                             }
+
+                            //1
+                            if(position+1==2){
+
+                                    Log.d(TAG, String.valueOf(position + 2));
+                                    mOutputStream.write(String.valueOf(position + 2).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
+                                    mOutputStream.flush();          // 清空缓存区
+                            }
+
+
+                            //2
+                            if(position+1==3){
+                                    Log.d(TAG, String.valueOf(position + 2));
+                                    mOutputStream.write(String.valueOf(position + 2).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
+                                    mOutputStream.flush();          // 清空缓存区
+                                    //turned=true;
+                            }
+
+                            //3
+                            if(position+1==4){
+                                    Log.d(TAG, String.valueOf(position + 2));
+
+                                    mOutputStream.write(String.valueOf(position + 2).getBytes());   //将相对应的cambat的值写入输出流，如S1,S2
+                                    mOutputStream.flush();          // 清空缓存区
+                                    //turned=true;
+                            }
+
 /////////////////////////////////////////////////////////////////////第一个按键翻转操作
 
                             //原双按键翻转操作
@@ -241,7 +290,6 @@ public class MainActivity extends AppCompatActivity {
                                             mList.get(i).setSocketImage(R.drawable.ic_power_settings_new_black_24dp);
                                             Log.d(TAG, "run: true " + i);
                                         }
-
                                     }
                                     sa.notifyDataSetChanged();
                                 }
